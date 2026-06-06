@@ -1,0 +1,388 @@
+/*
+ * navbar.css — EcoTour+ Shared Navigation Styles
+ * Import this on EVERY page: ecotour.php, destinations.php, auth.php, tourist-dashboard.php
+ * Design: refined minimalist — deep forest green brand, clean white bar, precise spacing
+ */
+
+/* ── Tokens ─────────────────────────────────────────────────────────────────── */
+:root {
+    --nav-h: 64px;
+    --forest: #2a4030;
+    --forest-mid: #3d5c47;
+    --forest-light: #527a5f;
+    --sage: #7a9e85;
+    --white: #ffffff;
+    --off-white: #f8f7f4;
+    --border-light: rgba(0, 0, 0, .08);
+    --text-dark: #1a2820;
+    --text-mid: #4a5e52;
+    --text-muted: #8a9e92;
+    --radius-sm: 6px;
+    --radius-pill: 999px;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-serif: 'DM Serif Display', Georgia, serif;
+    --transition: .18s ease;
+}
+
+/* ── Base nav bar ───────────────────────────────────────────────────────────── */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(255, 255, 255, .97);
+    border-bottom: 1px solid var(--border-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: box-shadow var(--transition), background var(--transition);
+    font-family: var(--font-sans);
+}
+
+.navbar.scrolled {
+    box-shadow: 0 2px 20px rgba(42, 64, 48, .10);
+}
+
+.nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 1.75rem;
+}
+
+/* ── Brand ──────────────────────────────────────────────────────────────────── */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--forest);
+    letter-spacing: -.01em;
+    flex-shrink: 0;
+    transition: opacity var(--transition);
+}
+
+.nav-brand:hover {
+    opacity: .82;
+}
+
+.nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--forest);
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.nav-logo-icon svg {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+}
+
+.brand-plus {
+    color: var(--sage);
+    font-style: italic;
+}
+
+/* ── Center nav links ───────────────────────────────────────────────────────── */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: .15rem;
+    margin-left: 2.5rem;
+    flex: 1;
+}
+
+.nav-link {
+    padding: .45rem .85rem;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+    letter-spacing: .01em;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--forest);
+    background: rgba(42, 64, 48, .06);
+}
+
+.nav-link.active {
+    color: var(--forest);
+    font-weight: 600;
+    background: rgba(42, 64, 48, .08);
+}
+
+/* ── Navbar search (destinations page) ─────────────────────────────────────── */
+.nav-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--off-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill);
+    padding: .38rem .75rem .38rem .6rem;
+    max-width: 240px;
+    flex: 1;
+    margin: 0 1.5rem;
+    transition: border-color var(--transition), box-shadow var(--transition), max-width var(--transition);
+    cursor: text;
+}
+
+.nav-search-wrap:focus-within {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(122, 158, 133, .15);
+    max-width: 320px;
+}
+
+.nav-search-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.nav-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: .82rem;
+    color: var(--text-dark);
+    outline: none;
+    min-width: 0;
+}
+
+.nav-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.nav-search-kbd {
+    font-size: .65rem;
+    font-family: var(--font-sans);
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, .05);
+    border-radius: 4px;
+    padding: .1rem .35rem;
+    letter-spacing: .02em;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+/* ── Right actions ──────────────────────────────────────────────────────────── */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* Logged-in user pill */
+.nav-user-pill {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .3rem .75rem .3rem .35rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-light);
+    text-decoration: none;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.nav-user-pill:hover {
+    background: var(--off-white);
+    border-color: rgba(0, 0, 0, .15);
+}
+
+.nav-user-avatar {
+    width: 26px;
+    height: 26px;
+    background: var(--forest);
+    color: #fff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.nav-user-name {
+    font-size: .83rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Buttons */
+.nav-btn {
+    padding: .45rem 1rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-size: .83rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nav-btn-ghost {
+    color: var(--text-mid);
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.nav-btn-ghost:hover {
+    color: var(--forest);
+    background: rgba(42, 64, 48, .06);
+}
+
+.nav-btn-solid {
+    background: var(--forest);
+    color: #fff;
+    border: 1px solid var(--forest);
+}
+
+.nav-btn-solid:hover {
+    background: var(--forest-mid);
+    border-color: var(--forest-mid);
+}
+
+/* ── Hamburger ──────────────────────────────────────────────────────────────── */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4.5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+    margin-left: .5rem;
+}
+
+.nav-hamburger:hover {
+    background: rgba(0, 0, 0, .05);
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: transform .22s ease, opacity .22s ease;
+    transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ──────────────────────────────────────────────────────────── */
+.nav-drawer {
+    display: none;
+    flex-direction: column;
+    padding: .5rem 1.25rem 1.25rem;
+    background: #fff;
+    border-top: 1px solid var(--border-light);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .28s ease;
+}
+
+.nav-drawer.open {
+    max-height: 400px;
+}
+
+.drawer-link {
+    padding: .7rem .5rem;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+    color: var(--forest);
+    background: rgba(42, 64, 48, .06);
+}
+
+.drawer-divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: .5rem 0;
+}
+
+.drawer-signup {
+    color: var(--forest);
+    font-weight: 600;
+}
+
+.drawer-logout {
+    color: #c0392b;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-search-wrap {
+        display: none;
+    }
+
+    .nav-actions .nav-btn-ghost {
+        display: none;
+    }
+
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-drawer {
+        display: flex;
+    }
+
+    .nav-inner {
+        padding: 0 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-actions .nav-btn-solid {
+        display: none;
+    }
+
+    .nav-actions .nav-user-name {
+        display: none;
+    }
+}
